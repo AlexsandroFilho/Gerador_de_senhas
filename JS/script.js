@@ -11,7 +11,7 @@ let passwordLenght = 16
 
 function genPassword() {
 
-    let chars= "abcdefghjklnmpqrstuvwxyz"
+    let chars= "abcdefghjklnmpqrstuvwxyzo"
 
     const upperCaseChars = "ABCDEFGHJKLNMPQRSTUVWZYZ"
     const numberChars = "123456789"
