@@ -46,7 +46,7 @@ function copy() {
     navigator.clipboard.writeText(inputEl.value)
 }
 
-const passwordLenghtEl = document.querySelector("#password-lenght")
+const passwordLenghtEl = document.querySelector("#password-length")
 passwordLenghtEl.addEventListener("input", function() {
     passwordLenght = passwordLenghtEl.value
     genPassword()
