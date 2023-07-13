@@ -41,7 +41,9 @@ function genPassword() {
 
     inputEl.value = password
 
+    fontSize()
     qualityPassword()
+    
 }
 
 function qualityPassword () {
@@ -75,6 +77,26 @@ function qualityPassword () {
         securityBarEl.classList.remove("completed")
     }
     
+}
+
+function fontSize () {
+    if (passwordLenght > 45) {
+        inputEl.classList.remove("font-sm")
+        inputEl.classList.remove("font-xs")
+        inputEl.classList.add("font-xxs")
+    } else if (passwordLenght > 32) {
+        inputEl.classList.remove("font-sm")
+        inputEl.classList.add("font-xs")
+        inputEl.classList.remove("font-xxs")
+    } else if (passwordLenght > 22) {
+        inputEl.classList.add("font-sm")
+        inputEl.classList.remove("font-xs")
+        inputEl.classList.remove("font-xxs")
+    } else {
+        inputEl.classList.remove("font-sm")
+        inputEl.classList.remove("font-xs")
+        inputEl.classList.remove("font-xxs")
+    }
 }
 
 function copy() {
