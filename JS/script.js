@@ -7,6 +7,8 @@ const inputEl = document.querySelector("#password")
 const upperCaseCheckEl = document.querySelector("#uppercase-check")
 const numberCheckEl = document.querySelector("#number-check")
 const symbolCheckEl = document.querySelector("#symbol-check")
+const securityBarEl = document.querySelector("#security-bar")
+
 let passwordLenght = 16
 
 function genPassword() {
@@ -39,7 +41,40 @@ function genPassword() {
 
     inputEl.value = password
 
-    console.log(password)
+    qualityPassword()
+}
+
+function qualityPassword () {
+    const percent = Math.round(
+        (passwordLenght / 64) * 20 +
+        (upperCaseCheckEl.checked ? 15 : 0) +
+        (numberCheckEl.checked ? 30 : 0) +
+        (symbolCheckEl.checked ? 35 : 0)
+        )
+    
+
+    securityBarEl.style.width = `${percent}%`
+
+    if (percent > 69) {
+        securityBarEl.classList.remove("danger")
+        securityBarEl.classList.remove("warning")
+        securityBarEl.classList.add("safe")
+    } else if (percent > 50) {
+        securityBarEl.classList.remove("danger")
+        securityBarEl.classList.add("warning")
+        securityBarEl.classList.remove("safe")
+    } else {
+        securityBarEl.classList.add("danger")
+        securityBarEl.classList.remove("warning")
+        securityBarEl.classList.remove("safe")
+    }    
+
+    if (percent >= 100) {
+        securityBarEl.classList.add("completed")
+    } else {
+        securityBarEl.classList.remove("completed")
+    }
+    
 }
 
 function copy() {
@@ -49,6 +84,7 @@ function copy() {
 const passwordLenghtEl = document.querySelector("#password-length")
 passwordLenghtEl.addEventListener("input", function() {
     passwordLenght = passwordLenghtEl.value
+    document.querySelector("#password-length-text").innerText = passwordLenght
     genPassword()
 })
 upperCaseCheckEl.addEventListener("click", genPassword)
